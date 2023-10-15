@@ -1,0 +1,37 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+    <head>
+        
+        <link rel="stylesheet" href="{% static 'login/style.css'%}">
+    </head>
+<body>
+    <button class='glowing-btn' id = 'enter'>
+        <span class='glowing-txt' id='glow-txt'>A<span id = 'first-txt'></span><span class='flicker' id= 'flicker'></span><span id = 'last-txt'></span></span>
+    </button>
+
+    <div class="popup" id = "popup">
+        <button class ='exit-button' id="popup-exit">X 
+        </button>
+        <br>
+        <span class="login" id ="login">
+            <form>  <!--action ="" method ="POST"> -->
+                
+                <label for="username">&emsp;&emsp;&emsp;&emsp;USERNAME:
+                    <input type = 'text' id = 'username' name="username" placeholder="username"><br>
+                    
+                </label>
+                <br>
+                <label for="password">&emsp;&emsp;&emsp;&emsp;PASSWORD:
+                    <input type = 'text' id = 'password' name="password" placeholder="password"><br>
+                </label>
+            </form>
+        </span>
+    </div>
+    
+    <script src="{% static 'login/script.js'%}"></script>
+</body>
+
+
+
+</html>

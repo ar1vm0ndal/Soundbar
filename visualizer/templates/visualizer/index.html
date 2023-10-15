@@ -1,0 +1,66 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<link href="{% static 'visualizer/style.css'%}" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+  <script src="{%static 'visualizer/script.js'%}"></script>
+</body>
+<div id="content">
+  
+ 
+<!-- SETTINGS BUTTON --><!-- <input type="file" id="filetwo" accept="audio/*" /> -->
+  <div class = "setBtn" id = "setBtn">
+    <span onclick="openSet()">
+      <img class="setimg" src = "https://www.shareicon.net/download/2015/10/04/651149_music.svg"  style="cursor: pointer;"></a>
+    <div class="btnLabel">
+        <p style="cursor:pointer;">Screen Settings</p>
+    </div>
+    </span>
+  </div>
+
+ <div id="setNav" class="setNav">
+ 
+  <input type="file" id="thefile" accept="audio/*" />
+  <div class="slidecontainer">
+    <label for="slider" style="position : relative; display:flex; color: #fc1100 ; font-family: Arial;">Color Intensity
+    <input type="range"  min=0 max=100 value=40 class="slider" id="islider">
+    <span id="intensity" style="color: rgb(255, 255, 255); z-index: 5;"> </span>
+  </label>
+   <input type="text" id = "scheme" placeholder="Scheme"/>
+
+   <form action = "" method = "post" id = 'mp3-dl'>
+    {% csrf_token %}
+    <label for="link" style="position: relative; display:flex; color:white; font-family: Arial;">Enter URL:</label>
+    <input type="text" id="link" name="link"><br><br>
+    <input type="submit" value="Submit">
+  </form>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+  <script>    
+    $(document).on('submit','#mp3-dl',function(e){
+        e.preventDefault();
+        $.ajax({
+            type:'POST',
+            url:'{% url "home" %}',
+            data:
+            {
+                link:$("#link").val(),
+                csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val()
+            },
+            })
+        });
+  </script>
+
+  </div>
+</div>
+  
+
+  <canvas id="canvas"></canvas>
+  <audio id="audio" controls loop></audio>
+
+ 
+  
+</div>
+
+</html>

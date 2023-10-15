@@ -1,0 +1,207 @@
+@import url("https://fonts.googleapis.com/css?family=Raleway");
+
+:root {
+  --glow-color: rgb(0, 0, 0);
+  --button-width: 2em;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+}
+
+body {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: radial-gradient( ellipse at 50% 50%, black 20%, var(--glow-color));
+  /* background: radial-gradient(circle at 50% 50%,black ,var(--glow-color) 34%, black 35%, var(--glow-color)); */
+}
+
+
+.glowing-btn {
+  position: relative;
+  color: var(--glow-color);
+  cursor: pointer;
+  padding: 0.5em 0.6em;
+  border: 0.15em solid var(--glow-color);
+  border-radius: 1em;
+  background: none;
+  perspective: 2em;
+  font-family: "Raleway", sans-serif;
+  font-size: 2em;
+  font-weight: 900;
+  letter-spacing: 1em;
+  box-shadow: inset 0px 0px 0.5em 0px var(--glow-color), 0px 0px 1em 0px var(--glow-color);
+  transition: all 1s ease; /* Add transition for smooth animation */
+  width: var(--button-width); /* Set initial width */
+  opacity:0.1;
+}
+
+.glowing-txt {
+  float: left;
+  margin-right: -0.8em;
+  transition: 250ms;
+  text-shadow: 0 0 0.125em hsl(0 0% 100% /0.1), 0 0 0.45em var(--glow-color);
+  opacity:0.1;
+}
+
+.glowing-btn::after {
+  content: "";
+  position: absolute;
+  border-radius: 0.6em;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  opacity: 0;
+  z-index: -1;
+  background-color: var(--glow-color);
+  /* Fuzziness around the box   */
+  box-shadow: 0 0 2em 2em var(--glow-color);
+  transition: opacity 250ms linear;
+}
+
+/* Remove hover animation for the initial state */
+.glowing-btn:hover {
+  color: rgba(0, 0, 0, 0.8);
+  text-shadow: none;
+  animation: none;
+}
+
+.glowing-btn:hover::before {
+  filter: blur(1.5em);
+  opacity: 1;
+}
+
+.glowing-btn:hover::after {
+  opacity: 1;
+}
+
+
+
+#flicker.faulty-letter {
+  opacity: 0.5;
+  animation: faulty-flicker 3s linear infinite;
+}
+
+.glowing-btn:hover #flicker.faulty-letter{
+  animation: none;
+  text-shadow: none;
+  opacity: 3;
+  
+}
+
+@keyframes faulty-flicker {
+  0% {
+    opacity: 1;
+  }
+  9%{
+    opacity: 1;
+  }
+  10% {
+    opacity: 0.1;
+  }
+  14%{
+    opacity: 0.1;
+  }
+  15%{
+    opacity:1;
+  }
+  16%{
+    opacity: 0.1;
+  }
+  30%{
+    opacity: 0.1;
+  }
+  39%{
+    opacity: 1;
+  }
+  40%{
+    opacity: 1;
+  }
+  69%{
+    opacity: 1;
+  }
+  70%{
+    opacity: 0.7;
+  }
+  79%{
+    opacity: 0.7;
+  }
+  80%{
+    opacity: 0.8;
+  }
+  100%{
+    opacity: 1;
+  }
+  
+}
+
+
+/* New CSS for button expansion */
+.glowing-btn.expanded {
+  --button-width: 14em; /* Set expanded width */
+  opacity:1;
+
+}
+
+
+.glowing-txt.expanded{
+  opacity: 1;
+  transition: linear 0.3s;
+}
+
+.exit-button{
+  z-index: 4;
+  font-size: large;
+  top: 0%;
+  left: 0%;  
+  background-color: var(--glow-color);
+  
+}
+  
+.popup{
+  z-index: -2;
+  /* visibility: hidden; */
+  opacity: 0;
+  position: fixed;
+  width: fit-content;
+  height: fit-content;
+  top: center;
+  left: center;
+  background-color: black;
+  border-color: white;
+  border: 0.15em solid var(--glow-color);
+  border-radius: 0.6em ;
+  font-family: "Raleway",sans-serif;
+  font-size: 1.2em;
+  color: var(--glow-color);
+  box-sizing: border-box;
+  padding-left: 0em;
+  padding-right: 8em;
+  padding-top: 0em;  
+  transition: 250ms;
+}
+
+.login{
+  padding-left: 4em;
+  padding-right: 5em
+
+}
+
+.popup-appear{
+  /* visibility: visible; */
+  z-index: 3;
+  opacity: 1;
+  transition: 250ms;
+}
